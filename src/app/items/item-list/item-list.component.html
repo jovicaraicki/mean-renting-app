@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-3">
+      <input type="text" [(ngModel)]="query" class="form-control" placeholder="Search" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2" style="text-align: center;">
+      <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-job-fair-event-01.jpg">
+    </div>
+    <div class="col-10">
+      <div class="grid-container">
+        <app-item-single
+          *ngFor="let item of items | search:'type,sqm,city,cityArea,street,furnished':query; let i = index"
+          [item]="item"
+          [index]="i">
+        </app-item-single>
+      </div>
+    </div>
+  </div>
+</div>

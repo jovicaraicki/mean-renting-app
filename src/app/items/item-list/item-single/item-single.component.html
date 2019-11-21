@@ -1,0 +1,24 @@
+<div class="grid-item">
+  <!-- [skipLocationChange]="true" -->
+  <a style="cursor: pointer;"
+    [routerLink]="'/edit/' + item._id"
+    (click)="onPassID(item._id)">
+    <div class="fit-image">
+      <img class="img-fluid" [src]="item.imagePath" alt="">
+    </div>
+  </a>
+  <div class="city">
+    <span class="city-name">{{ item.type }}</span>
+    <span class="city-name">{{ item.city }}</span>
+    <span class="city-name">{{ item.cityArea }}</span>
+    <span style="text-transform: lowercase;">{{ item.sqm }}m2</span>
+  </div>
+  <div class="description">
+    <span>{{ item.description }}</span>
+  </div>
+  <div class="beds">
+    <span class="price">{{ item.price }}€</span>
+    <span>{{ item.rooms }} rooms, {{ item.beds }} beds, {{ item.furnished }} {{ item.date | date }}</span>
+  </div>
+
+</div>

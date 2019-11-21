@@ -1,0 +1,340 @@
+<div class="container-fluid" *ngIf="isDataLoaded">
+  <div class="row">
+
+    <!-- <div class="col-2 center">
+        <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-lush-sale-advertising-01.jpg" class="img-fluid">
+    </div> -->
+
+    <div class="col-5">
+      <div class="fit-image">
+        <img [src]="item.imagePath" class="img-fluid">
+      </div>
+      <div class="item-type">
+        <span class="col-3" *ngIf="!editModeType">{{ item.type }}</span>
+        <input *ngIf="editModeType" type="text" class="form-control col-3" [(ngModel)]="type" style="height:30px;" placeholder="Type">
+        <button *ngIf="!editModeType" type="button" class="btn btn-warning btn-sm" (click)="onEditType()">Edit</button>
+        <button *ngIf="editModeType" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeType" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelType()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <span class="col-10" *ngIf="!editModeSqm">Square Meters: {{ item.sqm }}m2</span>
+        <input *ngIf="editModeSqm" type="text" class="form-control col-5" [(ngModel)]="sqm" style="height:30px;" placeholder="Square Meters">
+        <button *ngIf="!editModeSqm" type="button" class="btn btn-warning btn-sm" (click)="onEditSqm()">Edit</button>
+        <button *ngIf="editModeSqm" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeSqm" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelSqm()">Cancel</button>
+      </div>
+
+      <div class="item-description">
+        <span class="col-12" *ngIf="!editModeDesc">{{ item.description }}</span>
+        <input *ngIf="editModeDesc" type="text" class="form-control col-8" [(ngModel)]="description" style="height:30px;" placeholder="Description">
+      </div>
+      <div class="item-description">
+        <button *ngIf="!editModeDesc" type="button" class="btn btn-warning btn-sm" style="margin-left: 15px;" (click)="onEditDesc()">Edit</button>
+        <button *ngIf="editModeDesc" type="button" class="btn btn-success btn-sm" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeDesc" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelDesc()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <span class="col-4" *ngIf="!editModeCity">{{ item.city }}</span>
+        <input *ngIf="editModeCity" type="text" class="form-control col-4" [(ngModel)]="city" style="height:30px;" placeholder="City">
+        <button *ngIf="!editModeCity" type="button" class="btn btn-warning btn-sm" (click)="onEditCity()">Edit</button>
+        <button *ngIf="editModeCity" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeCity" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelCity()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <span class="col-4" *ngIf="!editModeCityArea">{{ item.cityArea }}</span>
+        <input *ngIf="editModeCityArea" type="text" class="form-control col-4" [(ngModel)]="cityArea" style="height:30px;" placeholder="City Area">
+        <button *ngIf="!editModeCityArea" type="button" class="btn btn-warning btn-sm" (click)="onEditCityArea()">Edit</button>
+        <button *ngIf="editModeCityArea" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeCityArea" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelCityArea()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <span class="col-11" *ngIf="!editModeStreet">{{ item.street }}</span>
+        <input *ngIf="editModeStreet" type="text" class="form-control col-10" [(ngModel)]="street" style="height:30px;" placeholder="Street">
+        <button *ngIf="!editModeStreet" type="button" class="btn btn-warning btn-sm" (click)="onEditStreet()">Edit</button>
+        <button *ngIf="editModeStreet" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeStreet" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelStreet()">Cancel</button>
+      </div>
+
+      <div class="item">
+          <span class="col-11" *ngIf="!editModeZipCode">ZIP: {{ item.zipCode }}, Area Code: {{ item.areaCode }}</span>
+          <input *ngIf="editModeZipCode" type="text" class="form-control col-4" [(ngModel)]="zipCode" style="height:30px;" placeholder="Zip Code">
+          <input *ngIf="editModeZipCode" type="text" class="form-control col-4" [(ngModel)]="areaCode" style="height:30px;" placeholder="Area Code">
+          <button *ngIf="!editModeZipCode" type="button" class="btn btn-warning btn-sm" (click)="onEditZipCode()">Edit</button>
+          <button *ngIf="editModeZipCode" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+          <button *ngIf="editModeZipCode" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelZipCode()">Cancel</button>
+        </div>
+
+      <div class="item">
+        <span class="col-11" *ngIf="!editModeFurnished">{{ item.furnished }}, {{ item.floor}} floor, {{ item.heating }}</span>
+        <input *ngIf="editModeFurnished" type="text" class="form-control col-4" [(ngModel)]="furnished" style="height:30px;" placeholder="Furnished">
+        <input *ngIf="editModeFurnished" type="text" class="form-control col-2" [(ngModel)]="floor" style="height:30px;" placeholder="Floor">
+        <input *ngIf="editModeFurnished" type="text" class="form-control col-3" [(ngModel)]="heating" style="height:30px;" placeholder="Heating">
+        <button *ngIf="!editModeFurnished" type="button" class="btn btn-warning btn-sm" (click)="onEditFurnished()">Edit</button>
+        <button *ngIf="editModeFurnished" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeFurnished" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelFurnished()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <div class="col-10" *ngIf="editModeDuplex">
+          <ul>
+            <li>
+              <label class="form-check-label" for="duplex">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="duplex">Duplex
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="loftApartment">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="loftApartment">Loft Apartment
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="penthouse">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="penthouse">Penthouse
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="lastFloor">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="lastFloor">Last Floor
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="item2">
+        <ul *ngIf="!editModeDuplex">
+          <li *ngIf="item.duplex">{{ item.duplex ? 'Duplex' : ''}}</li>
+          <li *ngIf="item.loftApartment">{{ item.loftApartment ? 'Loft Apartment' : ''}}</li>
+          <li *ngIf="item.penthouse">{{ item.penthouse ? 'Penthouse' : ''}}</li>
+          <li *ngIf="item.lastFloor">{{ item.lastFloor ? 'Last Floor' : ''}}</li>
+        </ul>
+        <button *ngIf="!editModeDuplex" type="button" class="btn btn-warning btn-sm" (click)="onEditDuplex()">Edit</button>
+        <button *ngIf="editModeDuplex" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeDuplex" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelDuplex()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <span class="col-11" *ngIf="!editModeRooms">{{ item.rooms }} rooms, {{ item.bedrooms }} bedrooms, {{ item.beds }} beds, {{ item.bathrooms }} bathrooms</span>
+        <input *ngIf="editModeRooms" type="text" class="form-control col-2" [(ngModel)]="rooms" style="height:30px;" placeholder="Rooms">
+        <input *ngIf="editModeRooms" type="text" class="form-control col-2" [(ngModel)]="bedrooms" style="height:30px;" placeholder="Bedrooms">
+        <input *ngIf="editModeRooms" type="text" class="form-control col-2" [(ngModel)]="beds" style="height:30px;" placeholder="Beds">
+        <input *ngIf="editModeRooms" type="text" class="form-control col-2" [(ngModel)]="bathrooms" style="height:30px;" placeholder="Bathrooms">
+        <button *ngIf="!editModeRooms" type="button" class="btn btn-warning btn-sm" (click)="onEditRooms()">Edit</button>
+        <button *ngIf="editModeRooms" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeRooms" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelRooms()">Cancel</button>
+      </div>
+
+      <div class="item">
+          <span class="col-11" *ngIf="!editModeBalcony">Balcony: {{ item.balcony }}</span>
+          <input *ngIf="editModeBalcony" type="text" class="form-control col-10" [(ngModel)]="balcony" style="height:30px;" placeholder="Balcony">
+          <button *ngIf="!editModeBalcony" type="button" class="btn btn-warning btn-sm" (click)="onEditBalcony()">Edit</button>
+          <button *ngIf="editModeBalcony" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+          <button *ngIf="editModeBalcony" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelBalcony()">Cancel</button>
+        </div>
+
+      <div class="assets-header">
+        <h5>Assets</h5>
+      </div>
+
+      <div class="item">
+        <div class="col-10" *ngIf="editModeAssets">
+          <ul>
+            <li>
+              <label class="form-check-label" for="cooling">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="cooling">Cooling
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="internet">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="internet">Internet
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="cableTv">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="cableTv">Cable TV
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="phone">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="phone">Phone
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="washingMachine">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="washingMachine">Washing Machine
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="dishWasher">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="dishWasher">Dish Washer
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="floorHeating">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="floorHeating">Floor Heating
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="pantry">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="pantry">Pantry
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="lift">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="lift">Lift
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="basement">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="basement">Basement
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="intercom">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="intercom">Intercom
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="videoSurv">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="videoSurv">Video Surveillance
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="garage">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="garage">Garage
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="parkingPlace">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="parkingPlace">Parking Place
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="garden">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="garden">Garden
+              </label>
+            </li>
+            <li>
+              <label class="form-check-label" for="pool">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="pool">Pool
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="item2">
+        <ul *ngIf="!editModeAssets">
+          <li *ngIf="item.cooling">{{ item.cooling === true ? 'Cooling' : ''}}</li>
+          <li *ngIf="item.internet">{{ item.internet === true ? 'Internet' : ''}}</li>
+          <li *ngIf="item.cableTv">{{ item.cableTv === true ? 'Cable TV' : ''}}</li>
+          <li *ngIf="item.phone">{{ item.phone === true ? 'Phone' : ''}}</li>
+          <li *ngIf="item.washingMachine">{{ item.washingMachine === true ? 'Washing Machine' : ''}}</li>
+          <li *ngIf="item.dishWasher">{{ item.dishWasher === true ? 'Dish Washer' : ''}}</li>
+          <li *ngIf="item.floorHeating">{{ item.floorHeating === true ? 'Floor Heating' : ''}}</li>
+          <li *ngIf="item.pantry">{{ item.pantry === true ? 'Pantry' : ''}}</li>
+          <li *ngIf="item.lift">{{ item.lift === true ? 'Lift' : ''}}</li>
+          <li *ngIf="item.basement">{{ item.basement === true ? 'Basement' : ''}}</li>
+          <li *ngIf="item.intercom">{{ item.intercom === true ? 'Intercom' : ''}}</li>
+          <li *ngIf="item.videoSurv">{{ item.videoSurv === true ? 'Video Surveillance' : ''}}</li>
+          <li *ngIf="item.garage">{{ item.garage === true ? 'Garage' : ''}}</li>
+          <li *ngIf="item.parkingPlace">{{ item.parkingPlace === true ? 'Parking Place' : ''}}</li>
+          <li *ngIf="item.garden">{{ item.garden === true ? 'Garden' : ''}}</li>
+          <li *ngIf="item.pool">{{ item.pool === true ? 'Pool' : ''}}</li>
+        </ul>
+        <button *ngIf="!editModeAssets" type="button" class="btn btn-warning btn-sm" (click)="onEditAssets()">Edit</button>
+        <button *ngIf="editModeAssets" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeAssets" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelAssets()">Cancel</button>
+      </div>
+
+    </div>
+
+    <div class="col-5">
+      <div class="map-container">
+        <agm-map [zoom]="16" [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="iconUrl">
+              <!-- <agm-info-window [disableAutoPan]="false" [isOpen]="true" #infoWindow><img [src]="item.imagePath" class="img-fluid" style="width:150px;height:auto;"></agm-info-window> -->
+              <agm-snazzy-info-window
+              [maxWidth]="200"
+              [maxHeight]="300"
+              [closeWhenOthersOpen]="true"
+              [isOpen]="true"
+              [placement]="'right'"
+              padding="0 0 0 0">
+              <ng-template>
+                <div class='map_info_wrapper'><a [routerLink]="['/details']"><div class='img_wrapper'><img [src]="item.imagePath"></div>
+                  <div class='property_content_wrap'>
+                  <div class='property_title'>
+                  <span>{{ item.city }}</span>
+                  </div>
+
+                  <div class='property_price'>
+                  <span>{{ item.street }}</span>
+                  </div>
+
+                  <div class='property_bed_type'>
+                  <span>2 rooms</span>
+                  <span>Apartment</span>
+                  </div>
+
+                  <div class='property_listed_date'>
+                  <span>Listed on May 2nd 2019 {{ item.creator }}</span>
+                  </div>
+                  </div></a></div>
+              </ng-template>
+            </agm-snazzy-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+
+      <div class="item-type">
+        <span class="col-3 price" *ngIf="!editModePrice">Price: {{ item.price }} €</span>
+        <input *ngIf="editModePrice" type="text" class="form-control col-2" [(ngModel)]="price" style="height:30px;" placeholder="Price">
+        <button *ngIf="!editModePrice" type="button" class="btn btn-warning btn-sm" (click)="onEditPrice()">Edit</button>
+        <button *ngIf="editModePrice" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModePrice" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelPrice()">Cancel</button>
+      </div>
+
+      <div class="item top-margin">
+        <div class="col-3" style="margin-left: 20px;">
+          <label class="form-check-label" for="deposit">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="deposit">Deposit
+          </label>
+        </div>
+        <button *ngIf="!editModeDeposit" type="button" class="btn btn-warning btn-sm" (click)="onEditDeposit()">Edit</button>
+        <button *ngIf="editModeDeposit" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeDeposit" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelDeposit()">Cancel</button>
+      </div>
+
+      <div class="item">
+        <span class="col-10" *ngIf="!editModeAvailableFrom">Available from {{ item.availableFrom | date }}</span>
+        <div class="input-group" *ngIf="editModeAvailableFrom">
+          <input class="form-control required" placeholder="yyyy-mm-dd"
+                  name="dp" [(ngModel)]="availableFrom" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar fa fa-calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+        <button *ngIf="!editModeAvailableFrom" type="button" class="btn btn-warning btn-sm" (click)="onEditAvailableFrom()">Edit</button>
+        <button *ngIf="editModeAvailableFrom" type="button" class="btn btn-success btn-sm" style="margin-left: 5px;" (click)="onUpdate()">Save</button>
+        <button *ngIf="editModeAvailableFrom" type="button" class="btn btn-danger btn-sm" style="margin-left: 5px;" (click)="onCancelAvailableFrom()">Cancel</button>
+      </div>
+
+    </div>
+
+    <div class="col-2 center">
+      <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-vibrant-business-01.jpg" class="img-fluid">
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top:20px;">
+    <div class="col-12 center">
+      <!-- <img src="https://mediavault.point2.com/p2a/themeresource/f352/afe3/1cba/716cbde7f3f3d080b43f/Original.jpg" class="img-fluid"> -->
+    </div>
+  </div>
+</div>

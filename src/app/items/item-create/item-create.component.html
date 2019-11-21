@@ -1,0 +1,407 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7">
+      <form
+        [formGroup]="itemForm"
+        (submit)="onSaveItem()">
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select
+                formControlName="type"
+                class="form-control required"
+                placeholder="Type">
+                <option *ngFor="let type of types" [value]="type.label">{{ type.label }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label for="sqm">Square Meters</label>
+              <input
+                type="text"
+                formControlName="sqm"
+                appNumber
+                class="form-control required"
+                placeholder="Square Meters">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label for="surface">Surface</label>
+              <input
+                type="text"
+                formControlName="surface"
+                appNumber
+                class="form-control"
+                placeholder="Surface">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input
+                type="text"
+                formControlName="price"
+                appNumber
+                class="form-control required"
+                placeholder="Price">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="imagePath">Image Path</label>
+              <input
+                type="text"
+                formControlName="imagePath"
+                class="form-control required"
+                placeholder="Image Path"
+                #imagePath>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <img [src]="imagePath.value" alt="" class="img-responsive">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input
+                type="text"
+                formControlName="city"
+                class="form-control required"
+                placeholder="City">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="cityArea">City Area</label>
+              <input
+                type="text"
+                formControlName="cityArea"
+                class="form-control required"
+                placeholder="City Area">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="areaCode">Area Code</label>
+              <input
+                type="text"
+                formControlName="areaCode"
+                class="form-control"
+                placeholder="Area Code">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-7">
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input
+                type="text"
+                formControlName="street"
+                class="form-control required"
+                placeholder="Street">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label for="zipCode">Zip Code</label>
+              <input
+                type="text"
+                formControlName="zipCode"
+                class="form-control"
+                placeholder="Zip Code">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label for="floor">Floor (Level)</label>
+              <input
+                type="text"
+                formControlName="floor"
+                class="form-control"
+                placeholder="Floor (Level)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+              <div class="form-group">
+              <label for="furnished">Furnished</label>
+              <input
+                type="text"
+                formControlName="furnished"
+                class="form-control required"
+                placeholder="Furnished">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label for="rooms">Rooms</label>
+              <input
+                type="text"
+                formControlName="rooms"
+                appNumber
+                class="form-control"
+                placeholder="Rooms">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label for="bedrooms">Bedrooms</label>
+              <input
+                type="text"
+                formControlName="bedrooms"
+                appNumber
+                class="form-control"
+                placeholder="Bedrooms">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label for="beds">Beds</label>
+              <input
+                type="text"
+                formControlName="beds"
+                appNumber
+                class="form-control"
+                placeholder="Beds">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label for="bathrooms">Bathrooms</label>
+              <input
+                type="text"
+                formControlName="bathrooms"
+                appNumber
+                class="form-control"
+                placeholder="Bathrooms">
+            </div>
+          </div>
+        </div>
+
+        <div class="row"style="margin-bottom: 15px;">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="heating">Heating</label>
+              <input
+                type="text"
+                formControlName="heating"
+                class="form-control"
+                placeholder="Heating">
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <label for="balcony">Balcony</label>
+              <input
+                type="text"
+                formControlName="balcony"
+                appNumber
+                class="form-control"
+                placeholder="Balcony">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+                <label for="availableFrom">Available From</label>
+                <div class="input-group">
+                  <input class="form-control required" placeholder="yyyy-mm-dd"
+                          name="dp" formControlName="availableFrom" ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar fa fa-calendar" (click)="d.toggle()" type="button"></button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 15px;display: block;width: 100%;">
+          <div class="col-12" style="display: flex;">
+            <div class="form-check" style="flex: 1;">
+              <label class="form-check-label" for="duplex">
+                <input type="checkbox" class="form-check-input" formControlName="duplex">Duplex
+              </label>
+            </div>
+            <div class="form-check" style="flex: 1;">
+              <label class="form-check-label" for="loftApartment">
+                <input type="checkbox" class="form-check-input" formControlName="loftApartment">Loft Apartment
+              </label>
+            </div>
+            <div class="form-check" style="flex: 1;">
+              <label class="form-check-label" for="penthouse">
+                <input type="checkbox" class="form-check-input" formControlName="penthouse">Penthouse
+              </label>
+            </div>
+            <div class="form-check" style="flex: 1;">
+              <label class="form-check-label" for="lastFloor">
+                <input type="checkbox" class="form-check-input" formControlName="lastFloor">Last Floor
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                type="text"
+                formControlName="description"
+                class="form-control"
+                rows="3"
+                placeholder="Description">
+              </textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 15px;">
+          <div class="col-2">
+            <div class="form-check">
+              <label class="form-check-label" for="deposit">
+                <input type="checkbox" class="form-check-input" formControlName="deposit">Deposit
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+              <h5>Assets</h5>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 15px;margin-top: 15px;">
+
+          <div class="col-3">
+            <div class="form-check">
+              <label class="form-check-label" for="cooling">
+                <input type="checkbox" class="form-check-input" formControlName="cooling">Cooling
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="internet">
+                <input type="checkbox" class="form-check-input" formControlName="internet">Internet
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="cableTv">
+                <input type="checkbox" class="form-check-input" formControlName="cableTv">Cable TV
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="phone">
+                <input type="checkbox" class="form-check-input" formControlName="phone">Phone
+              </label>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="form-check">
+              <label class="form-check-label" for="washingMachine">
+                <input type="checkbox" class="form-check-input" formControlName="washingMachine">Washing Machine
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="dishWasher">
+                <input type="checkbox" class="form-check-input" formControlName="dishWasher">Dish Washer
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="floorHeating">
+                <input type="checkbox" class="form-check-input" formControlName="floorHeating">Floor Heating
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="pantry">
+                <input type="checkbox" class="form-check-input" formControlName="pantry">Pantry
+              </label>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="form-check">
+              <label class="form-check-label" for="lift">
+                <input type="checkbox" class="form-check-input" formControlName="lift">Lift
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="basement">
+                <input type="checkbox" class="form-check-input" formControlName="basement">Basement
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="intercom">
+                <input type="checkbox" class="form-check-input" formControlName="intercom">Intercom
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="videoSurv">
+                <input type="checkbox" class="form-check-input" formControlName="videoSurv">Video Surveillance
+              </label>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="form-check">
+              <label class="form-check-label" for="garage">
+                <input type="checkbox" class="form-check-input" formControlName="garage">Garage
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="parkingPlace">
+                <input type="checkbox" class="form-check-input" formControlName="parkingPlace">Parking Place
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="garden">
+                <input type="checkbox" class="form-check-input" formControlName="garden">Garden
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="pool">
+                <input type="checkbox" class="form-check-input" formControlName="pool">Pool
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="itemForm.invalid">Submit</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="col-1">
+
+    </div>
+
+    <div class="col-4">
+      <div id="ads">
+        <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-gold-sale-advertisting-01-c.jpg">
+      </div>
+    </div>
+  </div>
+</div>

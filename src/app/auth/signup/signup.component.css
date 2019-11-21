@@ -1,0 +1,31 @@
+h1 {
+  padding: 20px;
+}
+
+button {
+  margin-top: 20px;
+  float: right;
+}
+
+button:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.form-group {
+  height: 80px;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.right {
+  float: right;
+  font-size: 0.8rem;
+}
+
+.center {
+  text-align: center;
+}

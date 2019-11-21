@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-11">
+      <h1 style="margin-left: -25px;">Register</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-5">
+      <form #f="ngForm" (ngSubmit)="onSignup(f)" autocomplete="off">
+        <div class="form-group">
+          <label for="name">User Name And Surname</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="User Name And Surname"
+            ngModel
+            required
+            #nameInput="ngModel">
+            <span class="error" *ngIf="nameInput.hasError('required') && nameInput.touched && nameInput.dirty">Field must not be empty.</span>
+        </div>
+        <div class="form-group">
+          <label for="name">E Mail</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="E Mail"
+            ngModel
+            required
+            email
+            #emailInput="ngModel">
+            <span class="error" *ngIf="emailInput.hasError('required') && emailInput.touched && emailInput.dirty">Field must not be empty.</span>
+            <span class="error" *ngIf="emailInput.hasError('email')">E-Mail is invalid.</span>
+        </div>
+        <div class="form-group">
+          <label for="name">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            ngModel
+            required
+            maxlength="6"
+            #passwordInput="ngModel">
+            <span class="error" *ngIf="passwordInput.hasError('required') && passwordInput.touched && passwordInput.dirty">Field must not be empty.</span>
+            <span class="error" *ngIf="passwordInput.value?.length < 6 && passwordInput.touched && passwordInput.dirty">Has to be at least 6 characters long.</span>
+            <span class="right">{{ passwordInput.value?.length }} / 6</span>
+        </div>
+        <div class="form-group">
+          <label for="name">Confirm Password</label>
+          <input
+            type="password"
+            name="confirm"
+            class="form-control"
+            placeholder="Confirm password"
+            ngModel
+            required
+            #confirmInput="ngModel">
+            <span class="error" *ngIf="confirmInput.hasError('required') && confirmInput.touched && confirmInput.dirty">Field must not be empty.</span>
+            <span class="error" *ngIf="passwordInput.value !== confirmInput.value">Passwords not match!</span>
+          </div>
+          <div class="form-group">
+            <label for="name">Contact Phone</label>
+            <input
+            type="text"
+            name="contactPhone"
+            class="form-control"
+            placeholder="Contact Phone"
+            ngModel>
+          </div>
+          <div class="form-group">
+            <label for="name">Address</label>
+            <input
+            type="text"
+            name="address"
+            class="form-control"
+            placeholder="Address"
+            ngModel>
+          </div>
+          <div style="display:flex;">
+            <div class="form-check" style="flex:1;">
+              <label class="form-check-label" for="agency">
+                <input type="checkbox" class="form-check-input" name="agency" [(ngModel)]="isAgency" (click)="onToggleAgency()">Agency
+              </label>
+            </div>
+            <div class="form-group" style="flex:2;" *ngIf="isAgency">
+              <label for="name">Agency Registration Number</label>
+              <input
+              type="text"
+              name="agencyReg"
+              class="form-control"
+              placeholder="Agency Registration Number"
+              ngModel>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="f.invalid || passwordInput.value !== confirmInput.value">Submit</button>
+      </form>
+    </div>
+    <div class="col-6 center">
+      <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-athletic-event-01.jpg" class="img-fluid">
+    </div>
+  </div>
+</div>

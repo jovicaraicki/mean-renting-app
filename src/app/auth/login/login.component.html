@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-11">
+      <h1 style="margin-left: -25px;">Login (Demo Account username: demo@demo.test password: 123456)</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-5">
+      <form #f="ngForm" (ngSubmit)="onLogin(f)" autocomplete="off">
+        <div class="form-group">
+          <label for="name">E Mail</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="E Mail"
+            ngModel
+            required
+            email
+            #emailInput="ngModel">
+            <span class="error" *ngIf="emailInput.hasError('required') && emailInput.touched && emailInput.dirty">Field must not be empty.</span>
+            <span class="error" *ngIf="emailInput.hasError('email')">E-Mail is invalid.</span>
+        </div>
+        <div class="form-group">
+          <label for="name">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            ngModel
+            required
+            maxlength="6"
+            #passwordInput="ngModel">
+            <span class="error" *ngIf="passwordInput.hasError('required') && passwordInput.touched && passwordInput.dirty">Field must not be empty.</span>
+            <span class="error" *ngIf="passwordInput.value?.length < 6 && passwordInput.touched && passwordInput.dirty">Has to be at least 6 characters long.</span>
+            <span class="right">{{ passwordInput.value?.length }} / 6</span>
+        </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="f.invalid">Submit</button>
+      </form>
+    </div>
+    <div class="col-6 center">
+      <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/print-banners-athletic-event-01.jpg" class="img-fluid">
+    </div>
+  </div>
+</div>

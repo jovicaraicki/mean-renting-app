@@ -1,0 +1,13 @@
+button:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+textarea {
+  resize: none;
+}
+
+input.required,
+select.required {
+  background-color: #ffe5e5;
+}
